@@ -1,0 +1,182 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>CHT's Top Movies</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    
+	<!--CHT: Added Links to My Google Fonts Here -->
+	<link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+			
+            /*CHT: Here I added background styles, including my own background image for the body of the page */
+			background-image:url(img/moviewebsite_bg.jpg);
+            background-size:contain;
+            width: 100%;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+		
+		
+		/*CHT: Movie Tiles: Some modifications made here to make movies fit one per row.*/
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+            display:block;
+            width: 64%;            
+        }
+		.movie-tile img{
+			width: 100%;
+			height: auto;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+
+		/* CHT: The various decorative text elements I use on this page. */
+		h2 {
+			font-family: 'Armata', sans-serif;
+        }
+        #navbar-title{
+			font-family: 'Bangers', cursive;
+			font-size:2.5em;
+			color:white;
+		}
+        
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+        
+		/*CHT: Styles of footer element */
+		#footer {
+        color: white!important;
+        background-color:#333;
+        margin-left:20px;
+        margin-right:20px;
+        }
+    
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <h1 id="navbar-title"><img src="img/Flim_roll_32.png"/>  CHT's Top 6 Movies That Will Change Your Life</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="movie_container" class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="2TTGhyp-mhE" data-toggle="modal" data-target="#trailer">
+    <img src="http://www.daedesign.com/wp-content/uploads/2011/04/blog_20060422.jpg" width="220" height="342">
+    <h2>Me and You and Everyone We Know</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="l-hCtlNM32M" data-toggle="modal" data-target="#trailer">
+    <img src="http://www.argia.eus/blogak/gaizka-izagirre/wp-content/uploads/2014/11/753Everything_Is_Illuminated_CC_Custom_.jpg" width="220" height="342">
+    <h2>Everything is Illuminated</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="yE-f1alkq9I" data-toggle="modal" data-target="#trailer">
+    <img src="http://schmoesknow.com/wp-content/uploads/2014/08/poster-eternal-sunshine-of-the-spotless-mind.jpg" width="220" height="342">
+    <h2>Eternal Sunshine of the Spotless Mind</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="_6b2XhXkPpg" data-toggle="modal" data-target="#trailer">
+    <img src="http://latimesblogs.latimes.com/.a/6a00d8341c630a53ef0147e0c60104970b-pi" width="220" height="342">
+    <h2>Water for Elephants</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="GNarV_3P4oM" data-toggle="modal" data-target="#trailer">
+    <img src="http://www.horacemann.org/uploaded/library/Cool_Stuff/Willy-Wonka-and-the-Chocolate-Factory-movie-poster-1020240284.jpg" width="220" height="342">
+    <h2>Willy Wonka and the Chocolate Factory</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="wvwVkllXT80" data-toggle="modal" data-target="#trailer">
+    <img src="http://wfiles.brothersoft.com/l/little-miss-sunshine-poster_79877-1600x1200.jpg" width="220" height="342">
+    <h2>Little Miss Sunshine</h2>
+</div>
+
+    </div>
+    <div id="footer">
+    <hr>
+    All images, videos, and fonts copyright their respective owners. <br>
+    <div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    </div>
+  </body>
+</html>
